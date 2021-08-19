@@ -5,6 +5,9 @@
  */
 package appbanco;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.UIManager;
+
 
 
 /**
@@ -19,8 +22,8 @@ public class Terminal extends javax.swing.JFrame {
      */
     public Terminal() {
         initComponents();
-        conta1 = new Conta("Joao", 10, 200);
-        conta2 = new Conta("Pedro", 11, 300);
+        conta1 = new Conta("Joao", 10, 200, 2000);
+        conta2 = new Conta("Pedro", 11, 300, 3000);
         
         imprimirConta();
         imprimirConta2();
@@ -66,6 +69,8 @@ public class Terminal extends javax.swing.JFrame {
         txtvalor2 = new javax.swing.JTextField();
         bntsacar2 = new javax.swing.JButton();
         btndepositar2 = new javax.swing.JButton();
+        btntransferencia12 = new javax.swing.JButton();
+        btntransferencia21 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +122,20 @@ public class Terminal extends javax.swing.JFrame {
             }
         });
 
+        btntransferencia12.setText("Transferir pra conta 2");
+        btntransferencia12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntransferencia12ActionPerformed(evt);
+            }
+        });
+
+        btntransferencia21.setText("Transferir pra conta1");
+        btntransferencia21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntransferencia21ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,17 +161,21 @@ public class Terminal extends javax.swing.JFrame {
                             .addComponent(lblsaldovalor2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnsacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bntdepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtvalor))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btndepositar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtvalor2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bntsacar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnsacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bntdepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtvalor))
+                            .addComponent(btntransferencia12))
+                        .addGap(71, 71, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btndepositar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtvalor2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(bntsacar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btntransferencia21))
                         .addGap(47, 47, 47)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +205,11 @@ public class Terminal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bntdepositar)
                     .addComponent(btndepositar2))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btntransferencia12)
+                    .addComponent(btntransferencia21))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,7 +217,7 @@ public class Terminal extends javax.swing.JFrame {
 
     private void btnsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsacarActionPerformed
         double valor = Double.parseDouble(txtvalor.getText());
-        conta1.sacar(conta1.getConta(), valor);
+        conta1.sacar(conta1.getConta(), valor, 2000);
         
         imprimirConta();
     }//GEN-LAST:event_btnsacarActionPerformed
@@ -204,7 +231,7 @@ public class Terminal extends javax.swing.JFrame {
 
     private void bntsacar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsacar2ActionPerformed
         double valor = Double.parseDouble(txtvalor2.getText());
-        conta2.sacar(conta2.getConta(), valor);
+        conta2.sacar(conta2.getConta(), valor, 3000);
         
         imprimirConta2();
     }//GEN-LAST:event_bntsacar2ActionPerformed
@@ -215,6 +242,25 @@ public class Terminal extends javax.swing.JFrame {
        
        imprimirConta2();
     }//GEN-LAST:event_btndepositar2ActionPerformed
+
+    private void btntransferencia12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia12ActionPerformed
+        double valor = Double.parseDouble(txtvalor.getText());
+        conta1.sacar(conta1.getConta(), valor, 2000);
+        conta2.deposito(conta2.getConta(), valor);
+        
+        imprimirConta2();
+        imprimirConta();
+      
+    }//GEN-LAST:event_btntransferencia12ActionPerformed
+
+    private void btntransferencia21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia21ActionPerformed
+        double valor = Double.parseDouble(txtvalor.getText());
+        conta2.sacar(conta2.getConta(), valor, 2000);
+        conta1.deposito(conta1.getConta(), valor);
+        
+        imprimirConta2();
+        imprimirConta();
+    }//GEN-LAST:event_btntransferencia21ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,7 +288,12 @@ public class Terminal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Terminal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        try {
+             UIManager.setLookAndFeel( new FlatLightLaf() );
+             } catch( Exception ex ) {
+             System.err.println( "Failed to initialize LaF" );
+            }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -256,6 +307,8 @@ public class Terminal extends javax.swing.JFrame {
     private javax.swing.JButton bntsacar2;
     private javax.swing.JButton btndepositar2;
     private javax.swing.JButton btnsacar;
+    private javax.swing.JButton btntransferencia12;
+    private javax.swing.JButton btntransferencia21;
     private javax.swing.JLabel lblconta1;
     private javax.swing.JLabel lblconta2;
     private javax.swing.JLabel lblnomeConta;

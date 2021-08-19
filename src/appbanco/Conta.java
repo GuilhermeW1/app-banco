@@ -17,6 +17,7 @@ public class Conta {
     private int conta;
     private int agencia;
     private double saldo;
+    private double chequeespecial;
 
     public void saldo(){
         System.out.println("Nome "+this.getNome());
@@ -24,37 +25,51 @@ public class Conta {
         
     }
 
-    public Conta(String nome, int conta, double saldo) {
+    public Conta(String nome, int conta, double saldo, double chequeespecial) {
         this.nome = nome;
         this.conta = conta;
         this.saldo = saldo;
+        this.chequeespecial = chequeespecial;
     }
     
-    public void sacar(int contaBanco, double v){
-        System.out.println("Sacando");
-        if(contaBanco == getConta()){
-        double saldoo = this.getSaldo() -v;
-        this.saldo = saldoo;
+    public void sacar(int contaBanco, double v, double cheque){
+       
+        if(contaBanco == this.getConta()){
+        double resultado = this.getSaldo() -v;
+        if( resultado * -1 <= cheque )    
+            
+            this.saldo = resultado;
         }
             
     }    
     
     public void deposito(int contaBanco, double v){
-        System.out.println("Depositando");
-        if(contaBanco == getConta()){
+       
+        if(contaBanco == this.getConta()){
          double saldoo = this.getSaldo() +v;
          this.saldo = saldoo;
         }
     }   
     
     public void transferencia(int contaBanco1, int contaBanco2, double v){
-        System.out.println("Transferindo");
-          sacar(contaBanco1, v);
+        
+        deposito(contaBanco2, v);  
+        System.out.println("aa");
+        sacar(contaBanco1, v, 2000);
+        System.out.println("L");
           
-          deposito(contaBanco2, v);
+          
       
             
     }  
+
+    public double getChequeespecial() {
+        return chequeespecial;
+    }
+
+    public void setChequeespecial(double chequeespecial) {
+        this.chequeespecial = chequeespecial;
+    }
     
    
     
