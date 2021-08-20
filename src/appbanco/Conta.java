@@ -32,34 +32,35 @@ public class Conta {
         this.chequeespecial = chequeespecial;
     }
     
-    public void sacar(int contaBanco, double v, double cheque){
-       
-        if(contaBanco == this.getConta()){
-        double resultado = this.getSaldo() -v;
-        if( resultado * -1 <= cheque )    
-            
-            this.saldo = resultado;
-        }
-            
+    public void sacar(double v){
+       try{
+      
+           double resultado = this.saldo -v;
+           if(resultado >= (this.chequeespecial * -1)){
+                this.saldo = this.saldo -v;
+            }
+       }catch(Exception ex){
+             System.err.println(ex.getMessage());
+       }  
     }    
     
-    public void deposito(int contaBanco, double v){
-       
-        if(contaBanco == this.getConta()){
-         double saldoo = this.getSaldo() +v;
-         this.saldo = saldoo;
+    public void deposito(double v){
+        try{
+        
+            this.saldo = this.saldo +v;
+        }catch(Exception e){
+                System.err.println(e.getMessage());
         }
     }   
     
-    public void transferencia(int contaBanco1, int contaBanco2, double v){
-        
-        deposito(contaBanco2, v);  
-        System.out.println("aa");
-        sacar(contaBanco1, v, 2000);
-        System.out.println("L");
-          
-          
+    public void transferencia(Conta transferencia, double v){
+     try{
+        sacar(v);
+        transferencia.deposito(v);
       
+     }catch(Exception ex){
+         System.err.println(ex.getMessage());
+     }
             
     }  
 
@@ -71,12 +72,6 @@ public class Conta {
         this.chequeespecial = chequeespecial;
     }
     
-   
-    
-    
-    
-    
-
     public String getNome() {
         return nome;
     }

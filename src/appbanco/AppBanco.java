@@ -15,12 +15,12 @@ public class AppBanco {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Conta conta1 = new Conta("Joao", 10, 200, 2000);
-        Conta conta2 = new Conta("Pedro", 11, 300, 3000);
+        Conta conta1 = new Conta("Joao", 10, 2000, 2000);
+        Conta conta2 = new Conta("Pedro", 11, 3000, 3000);
         conta1.saldo();
         System.out.println("==========");
-        conta1.deposito(10, 100);
-        conta1.sacar(10, 2301, 2000);
+        conta1.deposito( 100);
+        conta1.sacar(2000);
         conta1.saldo();
         
         /*

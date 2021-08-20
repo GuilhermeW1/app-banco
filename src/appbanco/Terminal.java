@@ -216,37 +216,39 @@ public class Terminal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsacarActionPerformed
+       try{
         double valor = Double.parseDouble(txtvalor.getText());
-        conta1.sacar(conta1.getConta(), valor, 2000);
-        
+        conta1.sacar(valor);
+       }catch(NumberFormatException ex){
+           System.err.println(ex.getMessage());
+       }
         imprimirConta();
     }//GEN-LAST:event_btnsacarActionPerformed
 
     private void bntdepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntdepositarActionPerformed
        double valor = Double.parseDouble(txtvalor.getText());
-       conta1.deposito(conta1.getConta(), valor);
+       conta1.deposito(valor);
        
        imprimirConta();
     }//GEN-LAST:event_bntdepositarActionPerformed
 
     private void bntsacar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsacar2ActionPerformed
         double valor = Double.parseDouble(txtvalor2.getText());
-        conta2.sacar(conta2.getConta(), valor, 3000);
+        conta2.sacar(valor);
         
         imprimirConta2();
     }//GEN-LAST:event_bntsacar2ActionPerformed
 
     private void btndepositar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositar2ActionPerformed
        double valor = Double.parseDouble(txtvalor2.getText());
-       conta2.deposito(conta2.getConta(), valor);
+       conta2.deposito(valor);
        
        imprimirConta2();
     }//GEN-LAST:event_btndepositar2ActionPerformed
 
     private void btntransferencia12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia12ActionPerformed
         double valor = Double.parseDouble(txtvalor.getText());
-        conta1.sacar(conta1.getConta(), valor, 2000);
-        conta2.deposito(conta2.getConta(), valor);
+        conta1.transferencia(conta2, valor);
         
         imprimirConta2();
         imprimirConta();
@@ -255,8 +257,7 @@ public class Terminal extends javax.swing.JFrame {
 
     private void btntransferencia21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia21ActionPerformed
         double valor = Double.parseDouble(txtvalor.getText());
-        conta2.sacar(conta2.getConta(), valor, 2000);
-        conta1.deposito(conta1.getConta(), valor);
+        conta2.transferencia(conta1, valor);
         
         imprimirConta2();
         imprimirConta();
