@@ -19,10 +19,10 @@ public class AppBanco {
         Conta conta2 = new Conta("Pedro", 11, 3000, 3000);
         conta1.saldo();
         System.out.println("==========");
-        conta1.deposito( 100);
+        conta1.deposito(100);
         conta1.sacar(2000);
         conta1.saldo();
-        
+
         /*
         conta1.saldo();
          System.out.println("==========");
@@ -33,9 +33,7 @@ public class AppBanco {
         conta1.saldo();
          System.out.println("==========");
          conta2.saldo();
-         */        
+         */
     }
-    
-    
-    
+
 }

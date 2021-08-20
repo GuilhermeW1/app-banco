@@ -11,18 +11,16 @@ package appbanco;
  */
 public class Conta {
 
-   
-    
     private String nome;
     private int conta;
     private int agencia;
     private double saldo;
     private double chequeespecial;
 
-    public void saldo(){
-        System.out.println("Nome "+this.getNome());
-        System.out.println("Saldo "+this.getSaldo());
-        
+    public void saldo() {
+        System.out.println("Nome " + this.getNome());
+        System.out.println("Saldo " + this.getSaldo());
+
     }
 
     public Conta(String nome, int conta, double saldo, double chequeespecial) {
@@ -31,38 +29,38 @@ public class Conta {
         this.saldo = saldo;
         this.chequeespecial = chequeespecial;
     }
-    
-    public void sacar(double v){
-       try{
-      
-           double resultado = this.saldo -v;
-           if(resultado >= (this.chequeespecial * -1)){
-                this.saldo = this.saldo -v;
+
+    public void sacar(double v) {
+        try {
+
+            double resultado = this.saldo - v;
+            if (resultado >= (this.chequeespecial * -1)) {
+                this.saldo = this.saldo - v;
             }
-       }catch(Exception ex){
-             System.err.println(ex.getMessage());
-       }  
-    }    
-    
-    public void deposito(double v){
-        try{
-        
-            this.saldo = this.saldo +v;
-        }catch(Exception e){
-                System.err.println(e.getMessage());
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
         }
-    }   
-    
-    public void transferencia(Conta transferencia, double v){
-     try{
-        sacar(v);
-        transferencia.deposito(v);
-      
-     }catch(Exception ex){
-         System.err.println(ex.getMessage());
-     }
-            
-    }  
+    }
+
+    public void deposito(double v) {
+        try {
+
+            this.saldo = this.saldo + v;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void transferencia(Conta transferencia, double v) {
+        try {
+            sacar(v);
+            transferencia.deposito(v);
+
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+
+    }
 
     public double getChequeespecial() {
         return chequeespecial;
@@ -71,7 +69,7 @@ public class Conta {
     public void setChequeespecial(double chequeespecial) {
         this.chequeespecial = chequeespecial;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -103,8 +101,5 @@ public class Conta {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    
-    
-    
-    
+
 }

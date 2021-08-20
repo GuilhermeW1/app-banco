@@ -8,13 +8,12 @@ package appbanco;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 
-
-
 /**
  *
  * @author guiaw
  */
 public class Terminal extends javax.swing.JFrame {
+
     Conta conta1, conta2;
 
     /**
@@ -24,27 +23,26 @@ public class Terminal extends javax.swing.JFrame {
         initComponents();
         conta1 = new Conta("Joao", 10, 200, 2000);
         conta2 = new Conta("Pedro", 11, 300, 3000);
-        
+
         imprimirConta();
         imprimirConta2();
     }
-    
-    public void imprimirConta(){
+
+    public void imprimirConta() {
         lblnomeConta.setText(conta1.getNome());
         double num = conta1.getSaldo();
         String con = Double.toString(num);
         lblsaldoAtual.setText(con);
-    
+
     }
-    public void imprimirConta2(){
+
+    public void imprimirConta2() {
         lblnomeconta2.setText(conta2.getNome());
         double num = conta2.getSaldo();
         String con = Double.toString(num);
         lblsaldovalor2.setText(con);
-    
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -216,49 +214,65 @@ public class Terminal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsacarActionPerformed
-       try{
-        double valor = Double.parseDouble(txtvalor.getText());
-        conta1.sacar(valor);
-       }catch(NumberFormatException ex){
-           System.err.println(ex.getMessage());
-       }
+        try {
+            double valor = Double.parseDouble(txtvalor.getText());
+            conta1.sacar(valor);
+        } catch (NumberFormatException ex) {
+            System.err.println(ex.getMessage());
+        }
         imprimirConta();
     }//GEN-LAST:event_btnsacarActionPerformed
 
     private void bntdepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntdepositarActionPerformed
-       double valor = Double.parseDouble(txtvalor.getText());
-       conta1.deposito(valor);
-       
-       imprimirConta();
+        try {
+            double valor = Double.parseDouble(txtvalor.getText());
+            conta1.deposito(valor);
+        } catch (NumberFormatException ex) {
+            System.err.println(ex.getMessage());
+        }
+        imprimirConta();
     }//GEN-LAST:event_bntdepositarActionPerformed
 
     private void bntsacar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsacar2ActionPerformed
-        double valor = Double.parseDouble(txtvalor2.getText());
-        conta2.sacar(valor);
-        
+        try {
+            double valor = Double.parseDouble(txtvalor2.getText());
+            conta2.sacar(valor);
+        } catch (NumberFormatException ex) {
+            System.err.println(ex.getMessage());
+        }
         imprimirConta2();
     }//GEN-LAST:event_bntsacar2ActionPerformed
 
     private void btndepositar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositar2ActionPerformed
-       double valor = Double.parseDouble(txtvalor2.getText());
-       conta2.deposito(valor);
-       
-       imprimirConta2();
+        try {
+            double valor = Double.parseDouble(txtvalor2.getText());
+            conta2.deposito(valor);
+        } catch (NumberFormatException ex) {
+            System.err.println(ex.getMessage());
+        }
+        imprimirConta2();
     }//GEN-LAST:event_btndepositar2ActionPerformed
 
     private void btntransferencia12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia12ActionPerformed
-        double valor = Double.parseDouble(txtvalor.getText());
-        conta1.transferencia(conta2, valor);
-        
+        try {
+            double valor = Double.parseDouble(txtvalor.getText());
+            conta1.transferencia(conta2, valor);
+        } catch (NumberFormatException ex) {
+            System.err.println(ex.getMessage());
+        }
         imprimirConta2();
         imprimirConta();
-      
+
     }//GEN-LAST:event_btntransferencia12ActionPerformed
 
     private void btntransferencia21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia21ActionPerformed
-        double valor = Double.parseDouble(txtvalor.getText());
-        conta2.transferencia(conta1, valor);
-        
+        try {
+            double valor = Double.parseDouble(txtvalor.getText());
+            conta2.transferencia(conta1, valor);
+
+        } catch (NumberFormatException ex) {
+            System.err.println(ex.getMessage());
+        }
         imprimirConta2();
         imprimirConta();
     }//GEN-LAST:event_btntransferencia21ActionPerformed
@@ -289,12 +303,12 @@ public class Terminal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Terminal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         try {
-             UIManager.setLookAndFeel( new FlatLightLaf() );
-             } catch( Exception ex ) {
-             System.err.println( "Failed to initialize LaF" );
-            }
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
