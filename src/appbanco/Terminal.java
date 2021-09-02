@@ -5,7 +5,7 @@
  */
 package appbanco;
 
-import com.formdev.flatlaf.FlatLightLaf;
+//import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 
 /**
@@ -256,7 +256,15 @@ public class Terminal extends javax.swing.JFrame {
     private void btntransferencia12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia12ActionPerformed
         try {
             double valor = Double.parseDouble(txtvalor.getText());
-            conta1.transferencia(conta2, valor);
+            boolean saque = conta1.sacar(valor);
+            
+            if(saque == true){
+                conta2.deposito(valor);
+                
+            }else{
+                System.out.println("deu nao");
+            }
+            
         } catch (NumberFormatException ex) {
             System.err.println(ex.getMessage());
         }
@@ -267,8 +275,13 @@ public class Terminal extends javax.swing.JFrame {
 
     private void btntransferencia21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransferencia21ActionPerformed
         try {
-            double valor = Double.parseDouble(txtvalor.getText());
-            conta2.transferencia(conta1, valor);
+            double valor = Double.parseDouble(txtvalor2.getText());
+            boolean saque = conta2.sacar(valor);
+            
+            if(saque ==true){
+                conta1.deposito(valor);
+            }else{
+               System.exit(0);}
 
         } catch (NumberFormatException ex) {
             System.err.println(ex.getMessage());
@@ -305,7 +318,7 @@ public class Terminal extends javax.swing.JFrame {
         //</editor-fold>
 
         try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
+            //UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }

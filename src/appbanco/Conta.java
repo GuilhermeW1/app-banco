@@ -30,24 +30,30 @@ public class Conta {
         this.chequeespecial = chequeespecial;
     }
 
-    public void sacar(double v) {
+    public boolean sacar(double v) {
         try {
 
             double resultado = this.saldo - v;
             if (resultado >= (this.chequeespecial * -1)) {
-                this.saldo = this.saldo - v;
-            }
+                this.saldo = resultado;
+                return true;
+            }else{return false;}
+            
         } catch (Exception ex) {
+            
             System.err.println(ex.getMessage());
+            return false;
+           
         }
+        
     }
 
     public void deposito(double v) {
         try {
 
-            this.saldo = this.saldo + v;
+            this.saldo = this.saldo + v;   
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+           System.err.println(e.getMessage());          
         }
     }
 
